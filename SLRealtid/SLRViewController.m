@@ -73,22 +73,27 @@
     NSString *key=@"ac2159434219a6b27bd1e0c0f49e1bd3";
     NSString *urlString=[NSString stringWithFormat:@"https://api.trafiklab.se/sl/realtid/GetSite.json?stationSearch=%@&key=%@",searchText,key];
     
-    NSError *error;
-    id result = [self getJSON:urlString error:error];
-
-    if (result == nil) return;
-    NSMutableDictionary *dict=(NSMutableDictionary*)result;
-    [self.searchResults removeAllObjects];
-    
-    @try {
-        for (id station in [[[dict objectForKey:@"Hafas"] objectForKey:@"Sites"] objectForKey:@"Site"]) {
-            NSLog(@"%@",[station objectForKey:@"Name"]);
-            [self.searchResults addObject:[station objectForKey:@"Name"]];
-        }
-    }
-    @catch (NSException *exception) {
+    //id result = [self getJSON:urlString error:error];
+    [self getAsyncJSON:urlString completionHandler:^(id result) {
+        if (result == nil) return;
+        NSMutableDictionary *dict=(NSMutableDictionary*)result;
         
-    }
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            @try {
+                [self.searchResults removeAllObjects];
+                for (id station in [[[dict objectForKey:@"Hafas"] objectForKey:@"Sites"] objectForKey:@"Site"]) {
+                    NSLog(@"%@",[station objectForKey:@"Name"]);
+                    [self.searchResults addObject:[station objectForKey:@"Name"]];
+                }
+
+            }
+            @catch (NSException *exception) {
+                
+            }
+        }];
+    }];
+
+
     
 }
 
@@ -103,6 +108,23 @@
     
     return [NSJSONSerialization JSONObjectWithData:urlData options:0 error:&error];
 }
+
+- (void)getAsyncJSON:( NSString *)urlString completionHandler:(void (^)(id))completionHandler {
+    NSURL *url=[NSURL URLWithString:urlString];
+    NSURLRequest * request =[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
+    
+    
+	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (data == nil) {
+            completionHandler(nil);
+        } else {
+        	id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
+        	completionHandler(json);
+        }
+    }];
+}
+
 
 
 
