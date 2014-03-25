@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4MA-7Y-u1h">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="2vd-b3-2bA">
+            <objects>
+                <tableViewController id="4MA-7Y-u1h" customClass="SLRViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="D0S-fC-Knm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="zFv-NJ-7fc">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="4MA-7Y-u1h" id="uiI-VC-aqQ"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListPrototypeCell" id="U5h-OA-JKK">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U5h-OA-JKK" id="RWX-4Y-EWY">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4MA-7Y-u1h" id="JoR-W5-qIo"/>
+                            <outlet property="delegate" destination="4MA-7Y-u1h" id="25d-gR-gey"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="D3O-39-onO" id="EPu-Jq-ubW"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7O-QN-GMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ztV-IZ-8qe">
+                    <connections>
+                        <outlet property="delegate" destination="4MA-7Y-u1h" id="fzd-Vp-mpy"/>
+                        <outlet property="searchContentsController" destination="4MA-7Y-u1h" id="iIa-rF-KXx"/>
+                        <outlet property="searchResultsDataSource" destination="4MA-7Y-u1h" id="fbQ-ZL-Ily"/>
+                        <outlet property="searchResultsDelegate" destination="4MA-7Y-u1h" id="UI9-B1-aUN"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="oZj-gj-s66">
+                    <connections>
+                        <outlet property="delegate" destination="4MA-7Y-u1h" id="7CJ-wL-iYv"/>
+                        <outlet property="searchContentsController" destination="4MA-7Y-u1h" id="zth-lO-nFu"/>
+                        <outlet property="searchResultsDataSource" destination="4MA-7Y-u1h" id="ouL-Ob-09X"/>
+                        <outlet property="searchResultsDelegate" destination="4MA-7Y-u1h" id="upj-pr-iW5"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="MUN-PE-xT9">
+                    <connections>
+                        <outlet property="delegate" destination="4MA-7Y-u1h" id="m0X-Oj-BDA"/>
+                        <outlet property="searchContentsController" destination="4MA-7Y-u1h" id="XDe-Sw-KLp"/>
+                        <outlet property="searchResultsDataSource" destination="4MA-7Y-u1h" id="NpK-jp-gdb"/>
+                        <outlet property="searchResultsDelegate" destination="4MA-7Y-u1h" id="7iv-ah-KeQ"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="D3O-39-onO">
+                    <connections>
+                        <outlet property="delegate" destination="4MA-7Y-u1h" id="goa-Af-4hm"/>
+                        <outlet property="searchBar" destination="zFv-NJ-7fc" id="f6S-9G-6ME"/>
+                        <outlet property="searchContentsController" destination="4MA-7Y-u1h" id="kkd-zD-XUh"/>
+                        <outlet property="searchResultsDataSource" destination="4MA-7Y-u1h" id="dKm-lo-iGm"/>
+                        <outlet property="searchResultsDelegate" destination="4MA-7Y-u1h" id="bO8-9V-6zq"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="466" y="241"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
